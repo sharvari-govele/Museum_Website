@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title> Buy tickets online </title> 
+    <link rel="stylesheet" href="style.css" >
+</head>
+<body> <nav>
+                    <div class="logo"><h1 class ="animate__animated animate__heartbeat animate__infinite" >Do Come & Visit</h1></div>
+                    <div class="menu">
+                        
+                        <a href="home.html">home </a>
+                        <a class="current" href="tickets.html">Buy tickets</a>
+                        <a href="exhibits.html">exhibits</a>
+                        <a href="other.html">other Activities</a>
+                        <a href="contact.html">contact</a>
+                        
+                            
+                    </div><div class="border"></div>
+    </nav>
+    
+   <div class="j"> 
+     <form action="home.html" method="post">
+  <div class="elem-group">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="visitor_name" placeholder="name" pattern=[A-Z\sa-z]{3,20} required>
+  </div>
+  <div class="elem-group">
+    <label for="email">Your E-mail</label>
+    <input type="email" id="email" name="visitor_email" placeholder="email" required>
+  </div>
+  <div class="elem-group">
+    <label for="phone">Your Phone</label>
+    <input type="tel" id="phone" name="visitor_phone" placeholder="number" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
+  </div>
+  
+  <div class="elem-group inlined">
+    <label for="adult">Adults</label>
+    <input type="number" id="adult" name="total_adults" placeholder="0" min="1" required oninput="calc()">
+  </div>
+  <div class="elem-group inlined">
+    <label for="child">Children</label>
+    <input type="number" id="child" name="total_children" placeholder="0" min="0" required  oninput="calc()">
+  </div>
+  <div class= "elem-group inlined">
+    <label for="checkin-date">Plan your visit</label>
+    <input type="date" id="checkin-date" name="checkin" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="amount">Total amount</label>
+    <input type="blank" id="amount" name="amount">
+  </div>
+  
+  
+ 
+  
+       <div class="elem-group inlined"> <button type="submit" name="submit">Buy Tickets</button></div>
+</form></div>
+    
+   <script>
+       var currentDateTime = new Date();
+var year = currentDateTime.getFullYear();
+var month = (currentDateTime.getMonth() + 1);
+var date = (currentDateTime.getDate() + 1);
+
+if(date < 10) {
+  date = '0' + date;
+}
+if(month < 10) {
+  month = '0' + month;
+}
+
+var dateTomorrow = year + "-" + month + "-" + date;
+var checkinElem = document.querySelector("#checkin-date");
+var checkoutElem = document.querySelector("#checkout-date");
+
+checkinElem.setAttribute("min", dateTomorrow);
+
+checkinElem.onchange = function () {
+    checkoutElem.setAttribute("min", this.value);
+}
+function calc() 
+{
+  var adult = document.getElementById("adult").value;
+  var children = document.getElementById("child").value;
+  var totala = adult * 700
+  var totalc= children * 500
+  var t=totala + totalc
+
+  if (!isNaN(t))
+    document.getElementById("amount").value = t
+}
+
+</script>
+    </body></html>
